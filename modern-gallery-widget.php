@@ -61,6 +61,18 @@ class Elementor_Modern_Gallery_Widget extends \Elementor\Widget_Base
             ]
         );
 
+        $this->add_control(
+            'shuffle_images',
+            [
+                'label' => __('Shuffle Images?', 'elementor-modern-gallery-extension'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Shuffle', 'elementor-modern-gallery-extension'),
+                'label_off' => __('Don\'t shuffle', 'elementor-modern-gallery-extension'),
+                'return_value' => 'yes',
+                'default' => 'no',
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -73,8 +85,14 @@ class Elementor_Modern_Gallery_Widget extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         $column_count = $settings['column_count']['size'];
 
+
+        $images = $settings['gallery'];
+        if ($settings['shuffle_images'] === 'yes') {
+            shuffle($images);
+        }
+
         echo '<div class="modern-gallery columns-' . $column_count . '">';
-        foreach ($settings['gallery'] as $image) {
+        foreach ($images as $image) {
             $link_html = '<a href="' . $image['url'] . '">';
             $link_html = $this->add_lightbox_data_to_image_link($link_html, $image['id']);
             echo '<div class="modern-gallery-image">';
@@ -87,5 +105,6 @@ class Elementor_Modern_Gallery_Widget extends \Elementor\Widget_Base
     }
 
     protected function _content_template()
-    {}
+    {
+    }
 }
