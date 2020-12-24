@@ -1,0 +1,29 @@
+.modern-gallery {
+    column-gap: 16px;
+}
+
+.modern-gallery > .modern-gallery-image {
+    display: inline-block;
+    margin: 4px 0;
+    width: 100%;
+}
+
+.modern-gallery > .modern-gallery-image img {
+    border-radius: 6px;
+}
+
+.modern-gallery.columns-2 {
+    column-count: 2;
+}
+
+.modern-gallery.columns-3 {
+    column-count: 3;
+}
+
+.modern-gallery.columns-4 {
+    column-count: 4;
+}
+
+.modern-gallery.columns-5 {
+    column-count: 5;
+}
